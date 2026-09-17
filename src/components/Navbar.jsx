@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, FileDown, Code2 } from 'lucide-react';
 import './Navbar.css';
 
-const RESUME_URL = "https://drive.google.com/file/d/19VCHnu6nU6wLdjMKjuwtboEkrNpKU2SC/view?usp=sharing";
+const RESUME_URL = "https://drive.google.com/file/d/1jzNwMotrXVZCuPPDVCJPd4PTtDkHIEJj/view?usp=sharing";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);

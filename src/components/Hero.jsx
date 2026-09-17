@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ArrowRight, FileDown, Mail, Linkedin, Github, Terminal, Sparkles, Copy, Check, Play } from 'lucide-react';
 import './Hero.css';
 
-const RESUME_URL = "https://drive.google.com/file/d/19VCHnu6nU6wLdjMKjuwtboEkrNpKU2SC/view?usp=sharing";
+const RESUME_URL = "https://drive.google.com/file/d/1jzNwMotrXVZCuPPDVCJPd4PTtDkHIEJj/view?usp=sharing";
 
 export default function Hero() {
   const [copied, setCopied] = useState(false);
