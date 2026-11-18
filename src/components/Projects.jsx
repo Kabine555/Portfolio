@@ -1,63 +1,112 @@
 import React, { useState } from 'react';
-import { FolderGit2, ArrowUpRight, Code, Layers, Sparkles, Eye } from 'lucide-react';
-import ProjectModal from './ProjectModal';
+import { Github, ExternalLink, ArrowUpRight, Layers, FlaskConical, BarChart2, Wifi, Globe, ChevronRight } from 'lucide-react';
 import './Projects.css';
 
 export default function Projects() {
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [hovered, setHovered] = useState(null);
 
   const projects = [
     {
-      id: 'civic-reporting',
-      category: 'Full-Stack & Java',
-      title: 'Smart Civic Issue Reporting and Resolution System',
-      tech: ['MERN Stack', 'Java', 'SQL', 'JWT Auth'],
-      description: 'Developed a full-stack web application for reporting, tracking, and managing civic issues.',
-      longDescription: 'A comprehensive full-stack municipal management application enabling citizens to report community issues (e.g., sanitation, road damage, lighting) while providing local authorities with automated task prioritization and resolution workflows.',
+      id: 'civic',
+      icon: <Globe size={22} />,
+      category: 'Full-Stack',
+      categoryColor: 'emerald',
+      title: 'Smart Civic Issue Reporting & Resolution System',
+      tech: ['MERN Stack', 'JWT Auth', 'Image Upload', 'REST API'],
+      description:
+        'A full-stack civic issue tracker with authentication, image uploads, location-based reporting and status tracking.',
       features: [
-        'Citizen issue logging with location coordinates and photo evidence upload',
-        'Role-based access control (Citizens vs Municipal Employees)',
-        'Real-time status tracking timeline (Pending, Assigned, In Progress, Resolved)',
-        'Java and SQL backend services for query execution and issue indexing'
+        'JWT-based role authentication (Citizens vs Authorities)',
+        'Image upload with location-based issue reporting',
+        'Real-time status tracking — Pending → In Progress → Resolved',
+        'Structured workflow for issue monitoring and resolution',
       ],
-      impact: 'Designed to streamline municipal response times and enhance civic engagement through structured status tracking and database normalization.',
-      githubUrl: null, // No fake links per strict prompt rule
-      liveUrl: null
+      githubUrl: null,
+      accent: 'emerald',
+      visual: '🏙️',
     },
     {
-      id: 'ai-presentation-maker',
+      id: 'ai-ppt',
+      icon: <Layers size={22} />,
       category: 'AI & Full-Stack',
+      categoryColor: 'lavender',
       title: 'AI Presentation Maker',
-      tech: ['Python', 'MERN Stack', 'AI Models', 'REST API'],
-      description: 'Developed an AI-powered application to generate presentation slides from user input.',
-      longDescription: 'An intelligent web application that converts raw text prompts or topic summaries into structured, beautifully formatted presentation slides using AI natural language understanding.',
+      tech: ['Python', 'MERN Stack', 'AI', 'REST API'],
+      description:
+        'An AI-powered web application that generates presentation slides from user input automatically.',
       features: [
-        'Natural Language Processing pipeline parsing topic outlines and key takeaways',
-        'Automated slide structure creation with customizable headers and bullet points',
-        'Interactive preview editor allowing rapid content customization',
-        'MERN stack web frontend with Python AI backend microservices'
+        'AI-driven slide generation from topic or text prompts',
+        'Web interface built on MERN stack',
+        'Python AI backend integration via REST APIs',
+        'Automated slide structure with headers and content',
       ],
-      impact: 'Engineered during internship work at CubeAI Solutions Tech to dramatically accelerate content creation workflows for presentations.',
       githubUrl: null,
-      liveUrl: null
+      accent: 'lavender',
+      visual: '🤖',
     },
     {
-      id: 'lifi-communication',
-      category: 'IoT & Hardware Systems',
-      title: 'Li-Fi-Based Data Communication System',
-      tech: ['IoT', 'Arduino', 'Li-Fi Photodiodes', 'C/C++'],
-      description: 'Developed an IoT-based Li-Fi system for wireless data transmission using LED light.',
-      longDescription: 'An innovative wireless communication prototype transmitting data securely through visible light waves utilizing LED illumination and high-speed photodiode optical sensors.',
+      id: 'morphoprint',
+      icon: <FlaskConical size={22} />,
+      category: 'Research / AI',
+      categoryColor: 'emerald',
+      title: 'MorphoPrint-OD — Blood Smear Recognition',
+      tech: ['Python', 'PyTorch', 'EfficientNet-B4', 'Optimal Transport'],
+      description:
+        'A research framework for blood smear disease classification using cell embeddings and Sinkhorn optimal transport.',
       features: [
-        'Optical data modulation transmitting sensor data using LED light pulses',
-        'Arduino microcontroller interfacing for real-time signal transmission',
-        'Noise filtration circuitry maximizing signal-to-noise ratio',
-        'High-security point-to-point wireless link immune to RF interference'
+        'Models each smear as distribution of cell embeddings (EfficientNet-B4)',
+        'Matches to disease prototypes using Sinkhorn optimal transport',
+        'Open-world rejection of unfamiliar / OOD cases',
+        'Co-authored research paper | Tested on 150-case external set',
       ],
-      impact: 'Demonstrated high-speed optical wireless data transmission for environments where radio frequencies are hazardous or restricted.',
+      metrics: [
+        { label: 'Accuracy', value: '97.33%' },
+        { label: 'Macro-F1', value: '0.9732' },
+        { label: 'OOD AUROC', value: '0.9650' },
+      ],
       githubUrl: null,
-      liveUrl: null
-    }
+      accent: 'emerald',
+      visual: '🔬',
+      isResearch: true,
+    },
+    {
+      id: 'ev-dashboard',
+      icon: <BarChart2 size={22} />,
+      category: 'Data Analytics',
+      categoryColor: 'lavender',
+      title: 'Electric Vehicle Data Intelligence Dashboard',
+      tech: ['Tableau', 'Data Analytics', 'Data Visualization'],
+      description:
+        'An interactive Tableau dashboard analyzing EV registrations, battery range and vehicle trends across states.',
+      features: [
+        'Analyzes EV registrations by model year, state, manufacturer and model',
+        'Battery range trends and CAFV eligibility analysis',
+        'Interactive charts, maps and dynamic filters',
+        'Presents insights from large-scale EV registration data',
+      ],
+      githubUrl: null,
+      accent: 'lavender',
+      visual: '⚡',
+    },
+    {
+      id: 'lifi',
+      icon: <Wifi size={22} />,
+      category: 'IoT / Hardware',
+      categoryColor: 'emerald',
+      title: 'Li-Fi-Based Data Communication System',
+      tech: ['Arduino', 'LED', 'Li-Fi', 'Electronics'],
+      description:
+        'A Li-Fi-based wireless data communication prototype using LED light for transmitting information.',
+      features: [
+        'Visible Light Communication (VLC) for data transmission',
+        'LED-based data encoding and transmission',
+        'Arduino microcontroller-based implementation',
+        'Explores wireless communication without RF interference',
+      ],
+      githubUrl: null,
+      accent: 'emerald',
+      visual: '💡',
+    },
   ];
 
   return (
@@ -69,49 +118,80 @@ export default function Projects() {
             Featured <span className="gradient-text">Projects</span>
           </h2>
           <p className="section-subheading">
-            Practical applications built across Software Engineering, Full-Stack Development, AI, and IoT Systems.
+            Practical applications built across Full-Stack Development, AI, Research, Data Analytics and IoT.
           </p>
         </div>
 
-        {/* Project Cards Grid */}
         <div className="projects-grid">
           {projects.map((proj) => (
-            <div key={proj.id} className="glass-card project-card">
+            <div
+              key={proj.id}
+              className={`project-card glass-card project-card--${proj.accent}`}
+              onMouseEnter={() => setHovered(proj.id)}
+              onMouseLeave={() => setHovered(null)}
+            >
+              {/* Card Top */}
               <div className="project-card-top">
-                <div className="project-icon-badge">
-                  <FolderGit2 size={24} />
-                </div>
-                <span className="project-cat-pill">{proj.category}</span>
+                <div className={`project-icon project-icon--${proj.accent}`}>{proj.icon}</div>
+                <span className={`project-cat-pill project-cat-pill--${proj.categoryColor}`}>
+                  {proj.category}
+                </span>
               </div>
+
+              {/* Visual Emoji */}
+              <div className="project-visual">{proj.visual}</div>
 
               <h3 className="project-title">{proj.title}</h3>
               <p className="project-desc">{proj.description}</p>
 
+              {/* Research Metrics */}
+              {proj.isResearch && proj.metrics && (
+                <div className="research-metrics">
+                  {proj.metrics.map((m, i) => (
+                    <div key={i} className="metric-item">
+                      <span className="metric-value">{m.value}</span>
+                      <span className="metric-label">{m.label}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Features */}
+              <ul className="project-features">
+                {proj.features.map((f, i) => (
+                  <li key={i}>
+                    <ChevronRight size={13} className={`feat-icon feat-icon--${proj.accent}`} />
+                    <span>{f}</span>
+                  </li>
+                ))}
+              </ul>
+
+              {/* Tech Tags */}
               <div className="project-tech-tags">
-                {proj.tech.map((t, idx) => (
-                  <span key={idx} className="tech-badge">{t}</span>
+                {proj.tech.map((t, i) => (
+                  <span key={i} className={`tech-tag tech-tag--${proj.accent}`}>{t}</span>
                 ))}
               </div>
 
-              <div className="project-card-bottom">
-                <button 
-                  className="btn-secondary btn-sm view-details-btn"
-                  onClick={() => setSelectedProject(proj)}
-                >
-                  <Eye size={16} />
-                  <span>View Project Breakdown</span>
-                </button>
-              </div>
+              {/* GitHub Button */}
+              {proj.githubUrl && (
+                <div className="project-links">
+                  <a
+                    href={proj.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-secondary btn-sm project-github-btn"
+                  >
+                    <Github size={15} />
+                    <span>GitHub</span>
+                    <ArrowUpRight size={13} />
+                  </a>
+                </div>
+              )}
             </div>
           ))}
         </div>
       </div>
-
-      {/* Project Details Modal */}
-      <ProjectModal 
-        project={selectedProject} 
-        onClose={() => setSelectedProject(null)} 
-      />
     </section>
   );
 }

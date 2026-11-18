@@ -1,81 +1,52 @@
-import React, { useState } from 'react';
-import { Code2, Database, BarChart3, Wrench, ShieldCheck, Code, Check } from 'lucide-react';
+import React from 'react';
+import { Code2, Database, Globe, Wrench, BarChart3, ShieldCheck, Terminal, Cpu } from 'lucide-react';
 import './Skills.css';
 
 export default function Skills() {
-  const [activeCategory, setActiveCategory] = useState('all');
-
-  const categories = [
-    { id: 'all', label: 'All Tech Stack' },
-    { id: 'prog_db', label: 'Languages & Databases' },
-    { id: 'analytics', label: 'Data Analytics & Tools' },
-    { id: 'core', label: 'Core Skills & Platforms' }
-  ];
-
   const skillGroups = [
     {
-      category: 'prog_db',
+      icon: <Code2 size={20} />,
       title: 'Programming Languages',
-      icon: <Code2 size={22} />,
-      skills: [
-        { name: 'Java', level: 'Core', highlight: true, note: 'OOP, Collections, Software Dev' },
-        { name: 'Python', level: 'Basic', highlight: false, note: 'Data Analysis & Scripts' }
-      ]
+      color: 'emerald',
+      skills: ['Java', 'Python (Basic)', 'SQL (Basic)'],
     },
     {
-      category: 'prog_db',
-      title: 'Databases',
-      icon: <Database size={22} />,
-      skills: [
-        { name: 'SQL', level: 'Proficient', highlight: true, note: 'Queries, Joins, Relational Schema' },
-        { name: 'MongoDB', level: 'Basic', highlight: false, note: 'NoSQL & MERN Applications' }
-      ]
+      icon: <ShieldCheck size={20} />,
+      title: 'Core Computer Science',
+      color: 'lavender',
+      skills: ['Data Structures & Algorithms', 'Computer Networks', 'Object-Oriented Programming'],
     },
     {
-      category: 'analytics',
+      icon: <Globe size={20} />,
+      title: 'Backend & Web Development',
+      color: 'emerald',
+      skills: ['MERN Stack', 'MongoDB', 'Express.js', 'React.js', 'Node.js', 'REST APIs'],
+    },
+    {
+      icon: <Database size={20} />,
+      title: 'Database',
+      color: 'lavender',
+      skills: ['MongoDB (Basic)', 'SQL (Basic)'],
+    },
+    {
+      icon: <Wrench size={20} />,
+      title: 'Tools',
+      color: 'emerald',
+      skills: ['Git', 'GitHub', 'VS Code'],
+    },
+    {
+      icon: <BarChart3 size={20} />,
       title: 'Data Analytics & Visualization',
-      icon: <BarChart3 size={22} />,
-      skills: [
-        { name: 'Tableau', level: 'Intermediate', highlight: true, note: 'Interactive Dashboards' },
-        { name: 'Power BI', level: 'Intermediate', highlight: true, note: 'Business Analytics & Reports' },
-        { name: 'MS Excel', level: 'Proficient', highlight: false, note: 'Data Manipulation & Analysis' }
-      ]
+      color: 'lavender',
+      skills: ['Tableau', 'Power BI', 'MS Excel'],
     },
     {
-      category: 'analytics',
-      title: 'Developer Tools',
-      icon: <Wrench size={22} />,
-      skills: [
-        { name: 'GitHub', level: 'Version Control', highlight: true, note: 'Repositories & Collaboration' },
-        { name: 'VS Code', level: 'Primary IDE', highlight: false, note: 'Code Editing & Debugging' },
-        { name: 'MS Word', level: 'Documentation', highlight: false, note: 'Technical Reports' }
-      ]
-    },
-    {
-      category: 'core',
-      title: 'Core Software Principles',
-      icon: <ShieldCheck size={22} />,
-      skills: [
-        { name: 'Object-Oriented Programming (OOP)', level: 'Core Focus', highlight: true, note: 'Abstractions & Encapsulation' },
-        { name: 'Software Development', level: 'Practical', highlight: true, note: 'Full Lifecycle Principles' },
-        { name: 'Debugging & Troubleshooting', level: 'Analytical', highlight: false, note: 'Code Fixes & Testing' },
-        { name: 'Problem Solving', level: 'Algorithmic', highlight: true, note: 'Analytical Reasoning' }
-      ]
-    },
-    {
-      category: 'core',
+      icon: <Terminal size={20} />,
       title: 'Coding Platforms',
-      icon: <Code size={22} />,
-      skills: [
-        { name: 'HackerRank', level: 'Active', highlight: true, note: 'Problem Solving & SQL Challenges' },
-        { name: 'LeetCode', level: 'Active', highlight: true, note: 'Data Structures Practice' }
-      ]
-    }
+      color: 'emerald',
+      skills: ['LeetCode'],
+    },
   ];
-
-  const filteredGroups = activeCategory === 'all' 
-    ? skillGroups 
-    : skillGroups.filter(g => g.category === activeCategory);
 
   return (
     <section id="skills" className="section-padding skills-section">
@@ -83,44 +54,23 @@ export default function Skills() {
         <div className="section-title-wrap">
           <span className="section-badge">Technical Arsenal</span>
           <h2 className="section-heading">
-            Skills & <span className="gradient-text">Competencies</span>
+            Skills &amp; <span className="gradient-text">Competencies</span>
           </h2>
           <p className="section-subheading">
-            Structured breakdown of programming languages, software engineering concepts, databases, and analytical tools.
+            A structured breakdown of my programming languages, core CS fundamentals, web technologies, tools and platforms.
           </p>
         </div>
 
-        {/* Category Filters */}
-        <div className="skills-filter-bar">
-          {categories.map(cat => (
-            <button
-              key={cat.id}
-              className={`skills-filter-btn ${activeCategory === cat.id ? 'active' : ''}`}
-              onClick={() => setActiveCategory(cat.id)}
-            >
-              {cat.label}
-            </button>
-          ))}
-        </div>
-
-        {/* Skill Groups Grid */}
         <div className="skills-grid">
-          {filteredGroups.map((group, idx) => (
-            <div key={idx} className="glass-card skill-group-card">
-              <div className="group-header">
-                <div className="group-icon">{group.icon}</div>
-                <h3 className="group-title">{group.title}</h3>
+          {skillGroups.map((group, i) => (
+            <div key={i} className={`glass-card skill-group-card skill-group--${group.color}`}>
+              <div className="skill-group-header">
+                <div className={`skill-group-icon icon--${group.color}`}>{group.icon}</div>
+                <h3 className="skill-group-title">{group.title}</h3>
               </div>
-
-              <div className="skills-list">
-                {group.skills.map((skill, sIdx) => (
-                  <div key={sIdx} className={`skill-chip ${skill.highlight ? 'highlight' : ''}`}>
-                    <div className="skill-chip-header">
-                      <span className="skill-name">{skill.name}</span>
-                      <span className="skill-badge-level">{skill.level}</span>
-                    </div>
-                    <p className="skill-note">{skill.note}</p>
-                  </div>
+              <div className="skill-tags">
+                {group.skills.map((s, j) => (
+                  <span key={j} className={`skill-tag skill-tag--${group.color}`}>{s}</span>
                 ))}
               </div>
             </div>

@@ -1,86 +1,100 @@
 import React, { useState } from 'react';
-import { ArrowRight, FileDown, Mail, Linkedin, Github, Terminal, Sparkles, Copy, Check, Play } from 'lucide-react';
+import { ArrowRight, FileDown, Mail, Linkedin, Github, Terminal, Sparkles, Copy, Check, Play, ChevronRight } from 'lucide-react';
 import './Hero.css';
 
-const RESUME_URL = "https://drive.google.com/file/d/1jzNwMotrXVZCuPPDVCJPd4PTtDkHIEJj/view?usp=sharing";
+const RESUME_URL = '/Kabine_R_Resume.pdf';
 
 export default function Hero() {
   const [copied, setCopied] = useState(false);
   const [activeTab, setActiveTab] = useState('java');
 
-  const javaCodeSnippet = `package com.kabine.profile;
+  const javaCode = `package com.kabine.profile;
 
-public class Engineer {
-    private String name = "KABINE R";
-    private String role = "Aspiring Software Engineer";
-    private String degree = "B.Tech AI & Data Science";
-    private String[] coreSkills = {"Java", "SQL", "MERN", "Python"};
+public class SoftwareEngineer {
+    private String name    = "Kabine R";
+    private String role    = "Java Backend Developer";
+    private String degree  = "B.Tech AI & Data Science";
+    private String[] skills = {
+        "Java", "DSA", "MERN", "SQL", "Python"
+    };
+    private double cgpa = 8.3;
 
-    public void buildSolutions() {
-        System.out.println("Building efficient software & solving real-world problems.");
+    public void buildScalableSoftware() {
+        System.out.println(
+          "Building reliable, scalable applications."
+        );
     }
 }`;
 
-  const dsCodeSnippet = `# Developer Profile Data Pipeline
-import pandas as pd
-
+  const pyCode = `# Developer Profile — Kabine R
 profile = {
-    "Candidate": "Kabine R.",
-    "Specialization": "AI & Data Science",
-    "Focus": ["Data Analysis", "Predictive Modeling", "Visualization"],
-    "CGPA": 8.3
+    "name":       "Kabine R",
+    "role":       "Java Backend Developer",
+    "degree":     "B.Tech AI & Data Science",
+    "cgpa":       8.3,
+    "focus":      ["DSA", "Java", "MERN", "Data Science"],
+    "internships": 3,
+    "projects":   5,
+    "research":   True  # MorphoPrint-OD (97.33% acc)
 }
 
-print(f"Ready for Software Engineer & AI Opportunities: {profile['Candidate']}")`;
+print(f"Open for opportunities: {profile['name']}")`;
 
   const copyCode = () => {
-    const textToCopy = activeTab === 'java' ? javaCodeSnippet : dsCodeSnippet;
-    navigator.clipboard.writeText(textToCopy);
+    navigator.clipboard.writeText(activeTab === 'java' ? javaCode : pyCode);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
 
   return (
     <section id="home" className="hero-section">
+      <div className="hero-bg-grid" />
       <div className="container hero-container">
-        {/* Left Column: Text & CTAs */}
+
+        {/* Left Column */}
         <div className="hero-content">
           <div className="hero-badge">
-            <Sparkles size={16} className="badge-sparkle" />
-            <span>Open for Software Engineer & AI Roles</span>
+            <Sparkles size={14} className="badge-sparkle" />
+            <span>Open for Software Engineer Roles</span>
           </div>
 
           <h1 className="hero-name">
-            KABINE <span className="gradient-text">R.</span>
+            KABINE <span className="gradient-text">R</span>
           </h1>
 
-          <h2 className="hero-role-main">
-            Aspiring Software Engineer
+          <h2 className="hero-role">
+            Software Engineer
+            <span className="role-divider"> | </span>
+            Java Backend Developer
           </h2>
 
           <div className="hero-pills">
             <span className="pill">Java</span>
-            <span className="pill-divider">•</span>
-            <span className="pill">Software Development</span>
-            <span className="pill-divider">•</span>
+            <span className="pill-sep">•</span>
+            <span className="pill">DSA</span>
+            <span className="pill-sep">•</span>
+            <span className="pill">MERN Stack</span>
+            <span className="pill-sep">•</span>
             <span className="pill">AI & Data Science</span>
           </div>
 
           <p className="hero-bio">
-            An aspiring Software Engineer with strong knowledge of Java, SQL, and software development principles. Experienced in data analysis, visualization, and full-stack application development through internships and academic projects. Passionate about building efficient software solutions, solving real-world problems, and continuously improving technical skills.
+            Java backend-focused B.Tech student in Artificial Intelligence and Data Science with strong
+            DSA and problem-solving skills. Built full-stack and data-driven applications through
+            internships and Java and MERN projects. Seeking opportunities to develop reliable and
+            scalable software applications.
           </p>
 
           {/* Action Buttons */}
           <div className="hero-actions">
             <a href="#projects" className="btn-primary">
-              <span>View My Projects</span>
+              <span>View Projects</span>
               <ArrowRight size={18} />
             </a>
 
-            <a 
-              href={RESUME_URL} 
-              target="_blank" 
-              rel="noopener noreferrer" 
+            <a
+              href={RESUME_URL}
+              download="Kabine_R_Resume.pdf"
               className="btn-secondary"
             >
               <FileDown size={18} />
@@ -96,88 +110,107 @@ print(f"Ready for Software Engineer & AI Opportunities: {profile['Candidate']}")
           {/* Social Links */}
           <div className="hero-socials">
             <span className="socials-label">Connect:</span>
-            <a 
-              href="https://linkedin.com/in/kabine-ramamoorthi-846730326" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="social-btn"
+            <a
+              href="https://linkedin.com/in/kabine27"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-btn linkedin"
               title="LinkedIn Profile"
             >
-              <Linkedin size={20} />
+              <Linkedin size={19} />
+              <span>LinkedIn</span>
             </a>
-
-            <a 
-              href="https://github.com/Kabine555" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="social-btn"
+            <a
+              href="https://github.com/Kabine555"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-btn github"
               title="GitHub Profile"
             >
-              <Github size={20} />
-            </a>
-
-            <a 
-              href="mailto:kabine.r27@gmail.com" 
-              className="social-btn"
-              title="Email Kabine"
-            >
-              <Mail size={20} />
+              <Github size={19} />
+              <span>GitHub</span>
             </a>
           </div>
         </div>
 
-        {/* Right Column: Interactive IDE Widget */}
+        {/* Right Column: Terminal Widget */}
         <div className="hero-terminal-wrapper">
           <div className="terminal-card">
-            {/* Terminal Header */}
+            {/* Header */}
             <div className="terminal-header">
               <div className="terminal-dots">
-                <span className="dot red"></span>
-                <span className="dot yellow"></span>
-                <span className="dot green"></span>
+                <span className="dot dot-red" />
+                <span className="dot dot-yellow" />
+                <span className="dot dot-green" />
               </div>
               <div className="terminal-title">
-                <Terminal size={14} />
+                <Terminal size={13} />
                 <span>Kabine_Profile.{activeTab === 'java' ? 'java' : 'py'}</span>
               </div>
               <button className="copy-btn" onClick={copyCode} title="Copy code">
-                {copied ? <Check size={14} className="text-emerald" /> : <Copy size={14} />}
+                {copied ? <Check size={13} className="text-emerald" /> : <Copy size={13} />}
               </button>
             </div>
 
-            {/* Terminal Tabs */}
+            {/* Tabs */}
             <div className="terminal-tabs">
-              <button 
+              <button
                 className={`tab-btn ${activeTab === 'java' ? 'active' : ''}`}
                 onClick={() => setActiveTab('java')}
-              >
-                <span>Engineer.java</span>
-              </button>
-              <button 
+              >Engineer.java</button>
+              <button
                 className={`tab-btn ${activeTab === 'python' ? 'active' : ''}`}
                 onClick={() => setActiveTab('python')}
-              >
-                <span>Analytics.py</span>
-              </button>
+              >Profile.py</button>
             </div>
 
-            {/* Code Body */}
+            {/* Code */}
             <div className="terminal-body">
               <pre className="code-block">
-                <code>{activeTab === 'java' ? javaCodeSnippet : dsCodeSnippet}</code>
+                <code>{activeTab === 'java' ? javaCode : pyCode}</code>
               </pre>
             </div>
 
-            {/* Console Output Bar */}
+            {/* Footer */}
             <div className="terminal-footer">
               <div className="status-indicator">
-                <Play size={12} className="play-icon" />
-                <span>BUILD SUCCESSFUL (0.12s)</span>
+                <Play size={11} className="play-icon" />
+                <span>BUILD SUCCESSFUL (0.08s)</span>
               </div>
               <span className="status-badge">Java 17 / Python 3.11</span>
             </div>
           </div>
+
+          {/* Quick Stats */}
+          <div className="hero-stats">
+            <div className="stat-item">
+              <span className="stat-num">8.3</span>
+              <span className="stat-label">CGPA</span>
+            </div>
+            <div className="stat-divider" />
+            <div className="stat-item">
+              <span className="stat-num">3</span>
+              <span className="stat-label">Internships</span>
+            </div>
+            <div className="stat-divider" />
+            <div className="stat-item">
+              <span className="stat-num">5</span>
+              <span className="stat-label">Projects</span>
+            </div>
+            <div className="stat-divider" />
+            <div className="stat-item">
+              <span className="stat-num">1</span>
+              <span className="stat-label">Research</span>
+            </div>
+          </div>
         </div>
+
+      </div>
+
+      {/* Scroll Hint */}
+      <div className="scroll-hint">
+        <ChevronRight size={16} className="scroll-chevron" />
+        <span>Scroll to explore</span>
       </div>
     </section>
   );

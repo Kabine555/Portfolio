@@ -1,90 +1,81 @@
 import React from 'react';
-import { GraduationCap, School, Award, Calendar, MapPin, CheckCircle2 } from 'lucide-react';
+import { GraduationCap, MapPin, Calendar, Award, CheckCircle2 } from 'lucide-react';
 import './Education.css';
 
 export default function Education() {
-  const educationList = [
-    {
-      institution: "Nandha Engineering College",
-      location: "Erode, Tamil Nadu",
-      degree: "Bachelor of Technology (B.Tech)",
-      field: "Artificial Intelligence and Data Science",
-      duration: "2023 – 2027",
-      cgpa: "8.3 / 10.0 (Current CGPA)",
-      icon: <GraduationCap size={24} />,
-      highlights: [
-        "Specializing in Machine Learning, Data Analytics, and Java Software Development",
-        "Active participant in technical hackathons and competitive programming workshops",
-        "Consistent academic track record across engineering coursework"
-      ]
-    },
-    {
-      institution: "Sri Sathya Sai Matriculation Higher Secondary School",
-      location: "Erode, Tamil Nadu",
-      degree: "Higher Secondary Education (HSC)",
-      field: "Science & Mathematics Stream",
-      duration: "2020 – 2023",
-      cgpa: null,
-      icon: <School size={24} />,
-      highlights: [
-        "Completed Higher Secondary Education with focus on Physics, Chemistry, and Mathematics",
-        "Represented school in national-level sports tournaments (Throwball & Tennikoit)"
-      ]
-    }
-  ];
+  const edu = {
+    institution: 'Nandha Engineering College',
+    location: 'Erode, Tamil Nadu',
+    degree: 'Bachelor of Technology (B.Tech)',
+    field: 'Artificial Intelligence and Data Science',
+    duration: '2023 – 2027',
+    cgpa: '8.3 / 10',
+    highlights: [
+      'Specializing in AI, Data Science, Java Software Development and DSA',
+      'Completed 3 internships and contributed to research during coursework',
+      'Active participant in hackathons — 2nd place in 24-Hour Makeathon',
+      'Consistent academic performance with 8.3 CGPA',
+    ],
+  };
 
   return (
     <section id="education" className="section-padding education-section">
       <div className="container">
         <div className="section-title-wrap">
-          <span className="section-badge">Academic Timeline</span>
+          <span className="section-badge">Academic Background</span>
           <h2 className="section-heading">
-            Education & <span className="gradient-text">Qualifications</span>
+            Education &amp; <span className="gradient-text">Qualifications</span>
           </h2>
           <p className="section-subheading">
-            My academic journey and foundation in Artificial Intelligence, Data Science, and Computer Science fundamentals.
+            My academic foundation in Artificial Intelligence, Data Science and Computer Science.
           </p>
         </div>
 
-        <div className="education-grid">
-          {educationList.map((item, idx) => (
-            <div key={idx} className="glass-card edu-card">
-              <div className="edu-card-top">
-                <div className="edu-icon-wrap">{item.icon}</div>
-                <div className="edu-time-badge">
-                  <Calendar size={14} />
-                  <span>{item.duration}</span>
-                </div>
+        <div className="edu-card-wrapper">
+          <div className="edu-main-card glass-card">
+            {/* Header */}
+            <div className="edu-card-header">
+              <div className="edu-icon-wrap">
+                <GraduationCap size={28} />
               </div>
-
-              <h3 className="edu-institution">{item.institution}</h3>
-              <p className="edu-location">
-                <MapPin size={14} />
-                {item.location}
-              </p>
-
-              <div className="edu-degree-box">
-                <h4 className="edu-degree">{item.degree}</h4>
-                <span className="edu-field">{item.field}</span>
+              <div className="edu-header-info">
+                <h3 className="edu-institution">{edu.institution}</h3>
+                <span className="edu-location-row">
+                  <MapPin size={14} />
+                  {edu.location}
+                </span>
               </div>
+              <div className="edu-duration-badge">
+                <Calendar size={13} />
+                <span>{edu.duration}</span>
+              </div>
+            </div>
 
-              {item.cgpa && (
-                <div className="edu-cgpa-pill">
-                  <Award size={16} />
-                  <span>Current CGPA: <strong>{item.cgpa}</strong></span>
-                </div>
-              )}
+            {/* Degree Info */}
+            <div className="edu-degree-block">
+              <h4 className="edu-degree">{edu.degree}</h4>
+              <span className="edu-field">{edu.field}</span>
+            </div>
 
-              <ul className="edu-highlights">
-                {item.highlights.map((hl, hIdx) => (
-                  <li key={hIdx}>
+            {/* CGPA */}
+            <div className="edu-cgpa-pill">
+              <Award size={16} />
+              <span>CGPA: <strong>{edu.cgpa}</strong></span>
+            </div>
+
+            {/* Highlights */}
+            <div className="edu-highlights">
+              <h5 className="edu-highlights-title">Highlights</h5>
+              <ul>
+                {edu.highlights.map((h, i) => (
+                  <li key={i}>
                     <CheckCircle2 size={15} className="edu-check" />
-                    <span>{hl}</span>
+                    <span>{h}</span>
                   </li>
                 ))}
               </ul>
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </section>
